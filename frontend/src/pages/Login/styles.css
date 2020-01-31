@@ -1,0 +1,7 @@
+.login-wrapper {
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #ddd9ce;
+}
