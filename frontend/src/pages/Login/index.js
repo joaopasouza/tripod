@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
@@ -9,6 +9,8 @@ import { login } from '../../services/userService';
 import './styles.css';
 
 function Login() {
+  const [message, setMessage] = useState('');
+
   const { handleSubmit, register, errors } = useForm({
     validationSchema: validateSchema,
   });
@@ -16,9 +18,14 @@ function Login() {
   const history = useHistory();
 
   const onSubmit = async (data) => {
-    const res = await login(data);
-    localStorage.setItem('loggedIn', res.token);
-    history.push('/');
+    const [res, err] = await login(data);
+    if (res) {
+      localStorage.setItem('loggedIn', res.token);
+      history.push('/');
+    } else {
+      console.log(err);
+      setMessage('Usuário não encontrado!');
+    }
   };
 
   return (
@@ -32,6 +39,8 @@ function Login() {
 
         <div className="login-box-body">
           <p className="login-box-msg">Faça login para iniciar sua sessão</p>
+          
+          {message && <p className="login-box-msg text-danger">{message}</p>}
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
