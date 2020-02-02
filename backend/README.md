@@ -1,28 +1,46 @@
-# Adonis API application
+# BackEnd
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
-
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
+- AdonisJS version: 4.1
+- MySQL version: 5.7
 
 ## Setup
 
-Use the adonis command to install the blueprint
+1. Configurando o servidor MySQL:
+Devemos criar um banco de dados chamado **rocket**, ou o nome de sua preferência.
+
+2. Configurando o projeto:
+Renomear o arquivo **.env.example** para **.env** e editá-lo com o seguinte conteúdo:
 
 ```bash
-adonis new yardstick --api-only
+HOST=127.0.0.1
+PORT=3333
+NODE_ENV=development
+APP_NAME=AdonisJs
+APP_URL=http://${HOST}:${PORT}
+CACHE_VIEWS=false
+APP_KEY=Ci3F6t1M5lleja4joeKluMJdB78xPxmb
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=root
+DB_DATABASE=rocket
+HASH_DRIVER=bcrypt
 ```
 
-or manually clone the repo and then run `npm install`.
+3. Instalar as dependêcias de projeto
+Execute o seguinte comando na raíz do projeto:
+```bash
+$ npm install
+```
 
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
+4. Migrações
+Rode o seguinte comando para executar migrações de inicialização.
+```bash
 adonis migration:run
+```
+
+5. Executar o projeto
+```bash
+adonis serve --dev
 ```
