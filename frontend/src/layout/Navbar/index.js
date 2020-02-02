@@ -7,6 +7,11 @@ import './styles.css';
 function Navbar(props) {
   const { username } = props;
 
+  const logout = () => {
+    localStorage.removeItem('loggedIn');
+    window.location.reload();
+  };
+
   return (
     <nav className="navbar navbar-static-top" role="navigation">
       <button type="button" className="sidebar-toggle">
@@ -20,7 +25,9 @@ function Navbar(props) {
           </li>
 
           <li>
-            <Link to="/logout">Sair</Link>
+            <Link to="#0" onClick={logout}>
+              Sair
+            </Link>
           </li>
         </ul>
       </div>

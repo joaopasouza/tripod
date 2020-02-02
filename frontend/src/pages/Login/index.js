@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import validateSchema from './validate';
+import { login } from '../../services/userService';
 
 import './styles.css';
 
@@ -12,8 +13,12 @@ function Login() {
     validationSchema: validateSchema,
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const history = useHistory();
+
+  const onSubmit = async (data) => {
+    const res = await login(data);
+    localStorage.setItem('loggedIn', res.token);
+    history.push('/');
   };
 
   return (
