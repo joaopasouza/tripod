@@ -31,10 +31,10 @@ function Register() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               type="text"
-              name="fullName"
-              placeholder="Nome Completo"
+              name="username"
+              placeholder="Usuário"
               register={register}
-              error={errors.fullName && errors.fullName.message}
+              error={errors.username && errors.username.message}
             />
 
             <Input
